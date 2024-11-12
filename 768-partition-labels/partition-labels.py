@@ -9,10 +9,8 @@ class Solution:
         counter=0
         k=0
         for i in s:
-            print(f"{i}{counter}{k}")
             if i not in vis:
                 if counter==0 and k!=0:
-                    print('correct')
                     res.append(k)
                     k=0
                     vis=set()
