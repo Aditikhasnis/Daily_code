@@ -5,7 +5,7 @@ class Solution:
         for row in matrix:
 
             key=tuple(row)
-            if row[0]:
+            if row[0]==0:
                 key=tuple([0 if r else 1 for r in row])
             
             res[key]+=1
