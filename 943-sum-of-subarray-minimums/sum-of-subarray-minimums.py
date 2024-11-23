@@ -24,14 +24,16 @@ class Solution:
                 prev[i]=stack2[-1][1]
             
             stack2.append((arr[i],i))
+            # print(stack2)
         
         sumi = 0
-        print(f'{res} {prev}')
+        # print(f'{res} {prev}')
         for i in range(n):
             left_contribution = i - prev[i]
             right_contribution = res[i] - i
-            contribution = left_contribution * right_contribution * arr[i]
-            sumi = (sumi + contribution) % MOD
+            contribution = left_contribution * right_contribution 
+            # print(contribution)
+            sumi = (sumi + (contribution*arr[i])) % MOD
 
         return sumi
     
