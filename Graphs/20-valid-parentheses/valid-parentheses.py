@@ -21,9 +21,7 @@ class Solution:
             i+=1
         
 
-        if len(stk)==0:
-            return True
-        return False
+        return True if len(stk)==0 else False 
 
 
 
