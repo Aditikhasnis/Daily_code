@@ -1,14 +1,14 @@
 class Solution {
     public long continuousSubarrays(int[] nums) {
-        int left = 0;      // Left pointer of the window
-        int right = 0;     // Right pointer of the window
+        int left = 0;      
+        int right = 0;     
         int n = nums.length;
-        int maxi = nums[0]; // Maximum value in the window
-        int mini = nums[0]; // Minimum value in the window
-        long result = 0;    // Total number of continuous subarrays
+        int maxi = nums[0]; 
+        int mini = nums[0]; 
+        long result = 0;    
 
         while (right < n) {
-            // Update maxi and mini for the current window
+
             maxi = Math.max(maxi, nums[right]);
             mini = Math.min(mini, nums[right]);
             while (maxi - mini > 2) {
