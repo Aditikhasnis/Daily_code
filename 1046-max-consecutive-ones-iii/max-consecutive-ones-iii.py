@@ -19,7 +19,7 @@ class Solution:
 
             
             mini=max(mini,j-i+1)
-            print(f'{i}-->{j}->{mini}')
+            # print(f'{i}-->{j}->{mini}')
             j+=1
 
 
