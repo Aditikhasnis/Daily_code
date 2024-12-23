@@ -27,17 +27,23 @@ class Solution:
             vis = set()
 
             for i in range(len(arr_level)):
-                if i in vis or arr_level[i] == sort_t[i]:
-                    continue
-                cycle_size = 0
-                x = i
-                while x not in vis:
-                    vis.add(x)
-                    x = maps[arr_level[x]]
-                    cycle_size += 1
+                # if i in vis or arr_level[i] == sort_t[i]:
+                #     continue
+                # cycle_size = 0
+                # x = i
+                # while x not in vis:
+                #     vis.add(x)
+                #     x = maps[arr_level[x]]
+                #     cycle_size += 1
 
-                if cycle_size > 1:
-                    count += cycle_size - 1
+                # if cycle_size > 1:
+                #     count += cycle_size - 1
+                while arr_level[i]!=sort_t[i]:
+                    count+=1
+                    id=maps[arr_level[i]]
+                    temp=arr_level[i]
+                    arr_level[i]=arr_level[id]
+                    arr_level[id]=temp
 
         return count
 
