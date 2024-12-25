@@ -33,7 +33,7 @@ class Solution:
             if maxi!=(-float('inf')):
                 res.append(maxi)
         
-        print(res)
+
         return res
                 
 
