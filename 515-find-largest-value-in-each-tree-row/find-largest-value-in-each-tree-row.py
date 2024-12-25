@@ -13,7 +13,7 @@ class Solution:
         res=[]
         if root==None:
             return res
-        res.append(root.val)
+
         
 
         while q:
@@ -21,19 +21,16 @@ class Solution:
             n=len(q)
             maxi=-float('inf')
             for _ in range(n):
-                curr=q.popleft()           
+                curr=q.popleft()    
+                maxi=max(maxi,curr.val)       
                 if curr.left:
                     q.append(curr.left)
-                    if curr.left.val>maxi:
-                        maxi=curr.left.val
+
                 if curr.right:
                     q.append(curr.right)
-                    if curr.right.val>maxi:
-                        maxi=curr.right.val
             if maxi!=(-float('inf')):
                 res.append(maxi)
         
-
         return res
                 
 
