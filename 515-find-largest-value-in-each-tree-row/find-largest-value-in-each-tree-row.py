@@ -15,7 +15,7 @@ class Solution:
             return res        
         while q:
             n=len(q)
-            maxi=-float('inf')
+            maxi=float('-inf')
             for _ in range(n):
                 curr=q.popleft()    
                 maxi=max(maxi,curr.val)       
@@ -23,7 +23,7 @@ class Solution:
                     q.append(curr.left)
                 if curr.right:
                     q.append(curr.right)
-            if maxi!=(-float('inf')):
+            if maxi!=(float('-inf')):
                 res.append(maxi)
         
         return res
