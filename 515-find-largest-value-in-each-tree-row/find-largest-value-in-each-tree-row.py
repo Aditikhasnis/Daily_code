@@ -12,12 +12,8 @@ class Solution:
         q.append(root)
         res=[]
         if root==None:
-            return res
-
-        
-
+            return res        
         while q:
-
             n=len(q)
             maxi=-float('inf')
             for _ in range(n):
@@ -25,7 +21,6 @@ class Solution:
                 maxi=max(maxi,curr.val)       
                 if curr.left:
                     q.append(curr.left)
-
                 if curr.right:
                     q.append(curr.right)
             if maxi!=(-float('inf')):
