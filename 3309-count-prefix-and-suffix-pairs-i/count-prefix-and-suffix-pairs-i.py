@@ -5,8 +5,7 @@ class Solution:
 
             for j in range(i+1,len(words)):
 
-                if words[i]== words[j][:len(words[i])] and words[i]==words[j][len(words[j])-len(words[i]):]:
-
+                if words[j].startswith(words[i]) and words[j].endswith(words[i]):
                     count+=1
         
         return count
