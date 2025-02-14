@@ -16,9 +16,10 @@ class Solution {
             heap.add(mp.getValue());
 
         }
-        int time=1;
+        int time=0;
         while(!q.isEmpty() || !heap.isEmpty())
         {
+            time++;
 
             if(!heap.isEmpty())
             {
@@ -41,11 +42,11 @@ class Solution {
                 heap.add(pair[0]);
             }
 
-            time++;
+            
 
         }
 
-        return time-1;
+        return time;
 
 
 
