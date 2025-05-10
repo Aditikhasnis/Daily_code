@@ -40,9 +40,7 @@ class Solution:
                 if v in vis:
                     continue
                 q.append([v,minute+1])
-                print(f"{u.val}-->{v.val} at minute {minute}")
-            
-            
+                       
         return minute
         
 
