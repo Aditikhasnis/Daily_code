@@ -1,3 +1,5 @@
+//@author Aditi Sunday 2025 July 6th 
+
 class FindSumPairs {
     int[] nums1 ;
     int[] nums2;
