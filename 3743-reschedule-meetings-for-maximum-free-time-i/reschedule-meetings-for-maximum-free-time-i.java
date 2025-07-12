@@ -22,9 +22,7 @@ class Solution {
 
         for(int i=1;i<n-k+1;i++)
         {
-            System.out.println(cnt);
             cnt-=gap[i-1];
-            System.out.println(gap[i-1] + " " + gap[i+k]);
             cnt+=gap[i+k];
             maxi=Math.max(maxi,cnt);
         }
