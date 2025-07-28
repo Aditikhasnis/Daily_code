@@ -14,24 +14,30 @@
  * }
  */
 class Solution {
-    public void dfs(TreeNode root , List<Integer> list)
+    int jumps=0;
+    int result=0;
+    public void dfs(TreeNode root , int k )
     {
         if(root==null)
         {
             return ;
         }
+        
+        dfs(root.left , k );
+        jumps++;
+        if(jumps == k)
+        {
+            result=root.val;
+        }
+        dfs(root.right,k);
 
-        list.add(root.val);
-        dfs(root.left , list);
-        dfs(root.right,list);
         return ;
+        
 
     }
     public int kthSmallest(TreeNode root, int k) {
-        List<Integer> list = new ArrayList<>();
-        dfs(root,list);
-        Collections.sort(list);
-        return list.get(k-1);
+        dfs(root,k);
+        return result;
         
     }
 }
