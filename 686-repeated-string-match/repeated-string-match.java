@@ -8,7 +8,7 @@ class Solution {
             sb.append(a);
         }
         String temp = sb.toString();
-        if(temp.length()>=b.length() && !temp.contains(b))
+        if(!temp.contains(b))
         {
             temp+=a;
         }
