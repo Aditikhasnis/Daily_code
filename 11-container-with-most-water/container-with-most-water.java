@@ -10,11 +10,11 @@ class Solution {
             {
                 left++;
             }
-            else if(height[left]==height[right])
-            {
-                left++;
-                right--;
-            }
+            // else if(height[left]==height[right])
+            // {
+            //     left++;
+            //     right--;
+            // }
             else{
                 right--;
             }
