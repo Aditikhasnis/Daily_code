@@ -9,12 +9,8 @@ class Solution {
             minQ.offer(new int[]{nums[j], j});
             maxQ.offer(new int[]{nums[j], j});
 
-            // shrink window until valid
-            while (!minQ.isEmpty() && !maxQ.isEmpty() &&
-                   maxQ.peek()[0] - minQ.peek()[0] > limit) {
+            while (!minQ.isEmpty() && !maxQ.isEmpty() && maxQ.peek()[0] - minQ.peek()[0] > limit) {
                 i++;
-
-                // lazy delete: remove elements outside window
                 while (!minQ.isEmpty() && minQ.peek()[1] < i) minQ.poll();
                 while (!maxQ.isEmpty() && maxQ.peek()[1] < i) maxQ.poll();
             }
