@@ -15,21 +15,12 @@ class Solution {
         for(int i=0;i<nums.length;i++)
         {
             _map.put(nums[i],_map.getOrDefault(nums[i],0)+1);
-            if(nums[i]==maxi && _map.get(maxi)>=k)
-            {
-                count+=nums.length -i ;
-            }
             while(windowHasMax(maxi,_map,k))
-            {
-               
+            { count+=nums.length-i;
               _map.replace(nums[j],_map.get(nums[j])-1);
                 if(_map.get(nums[j])==0)
                 {
                     _map.remove(nums[j]);
-                }
-                if(windowHasMax(maxi,_map,k))
-                {
-                    count+=nums.length-i;
                 }
                 j++;
                 
