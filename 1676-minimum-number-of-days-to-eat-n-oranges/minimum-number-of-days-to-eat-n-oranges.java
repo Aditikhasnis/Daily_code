@@ -9,7 +9,7 @@ class Solution {
             return map.get(n);
 
         }
-        int ans=1 + Math.min(n%2+dfs(n/2) , n%3 + dfs(n/3));
+        int ans=1+ Math.min(n%2 + dfs(n/2) , n%3 +dfs(n/3));
         map.put(n,ans);
         return ans;
     }
