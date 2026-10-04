@@ -23,10 +23,7 @@ class Solution {
          low[parent]=low[src];
      }
      else if(dist[parent]<low[src]){
-         List<Integer> list = new ArrayList<>();
-         list.add(parent);
-         list.add(src);
-         bridges.add(list);
+         bridges.add(Arrays.asList(src,parent));
      }
 
 
