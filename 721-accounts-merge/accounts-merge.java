@@ -1,107 +1,60 @@
-// Inc Aditi 21st June Saturday 2025 >3
-
 class Solution {
-    static class DSU{
-        private int[] parent;
-        private int[] size;
-        public DSU(int V)
-        {
-            parent=new int[V];
-            size=new int[V];
-            for(int i=0;i<V;i++)
-            {
-                parent[i]=i;
-                size[i]=1;
+        static class UnionAccount{
+        int[] parent ;
+        UnionAccount(int n ){
+            parent = new int[n];
+            for (int i = 0; i < n; i++) {
+                parent[i] = i;
             }
         }
 
-        public int findParent(int u)
-        {
-            if (parent[u]==u)
-            {
-                return u;
+        public int findParent(int i){
+            if(parent[i]!=i){
+                 parent[i]=findParent(parent[i]);
             }
-            return parent[u]=findParent(parent[u]);
+            return parent[i];
         }
-        public void union(int u , int v)
-        {
-            int parentOfu=findParent(u);
-            int parentOfv=findParent(v);
-            if(size[parentOfu] > size[parentOfv])
-            {
-                parent[parentOfv]=parentOfu;
-                size[parentOfu]+=size[v];
-            }
-            else{
-                parent[parentOfu]=parentOfv;
-                size[parentOfv]+=size[u];
-            }
 
+        public void unionParents(int i , int j){
+            int one = findParent(i);
+            int two = findParent(j);
+            parent[two]=one;
         }
     }
-    static class Edge{
-        String src ;
-        String dest;
-        Edge(String src , String dest)
-        {
-            this.src=src;
-            this.dest=dest;
-        }
-    }
-
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
-    final  HashMap<String,Integer> _parentMap = new HashMap<>();
-    int V=accounts.size();
-    DSU dsu = new DSU(V+1);
-    ArrayList<String>[] Graph = new ArrayList[V+1];
-    for(int i=0;i<V+1;i++)
-    {
-        Graph[i]= new ArrayList<>();
-    }
-    for(int i=0;i<V;i++)
-    {
-        for(int j=1;j<accounts.get(i).size();j++)
-        {
-            String email_you_know=accounts.get(i).get(j);
-            if(!_parentMap.containsKey(email_you_know))
-            {
-                _parentMap.put(email_you_know,i);
+         HashMap<String, Integer> map = new HashMap<>();
+        UnionAccount uc = new UnionAccount(accounts.size());
+        int level=0;
+        for(List<String> acct : accounts){
+            for(int i=1;i<acct.size();i++){
+                 String email = acct.get(i);
+                if(map.containsKey(email)){
+                    uc.unionParents(map.get(email),level);
+                }
+                else{
+                    map.put(email,level);
+                }
             }
-            else
-            {
-                dsu.union(i,_parentMap.get(email_you_know));
+            level++;
+        }
+        List<List<String>> result = new ArrayList<>();
+        HashMap<Integer,TreeSet<String>> fmap = new HashMap<>();
+        for(int i=0;i<uc.parent.length;i++){
+            int root = uc.findParent(i);
+            fmap.putIfAbsent(root, new TreeSet<>());
+            for(int j=1 ; j<accounts.get(i).size();j++){
+              fmap.get(root).add(accounts.get(i).get(j));
             }
 
         }
-    }
 
-    for(Map.Entry<String,Integer> map : _parentMap.entrySet())
-    {
-        String key = map.getKey();
-        Graph[dsu.findParent(map.getValue())].add(key);
-    }
-    List<List<String>> result = new ArrayList<>();
-    
-    for(int i=0;i<Graph.length;i++)
-    {
-        if(Graph[i].size()==0)
-        {
-            continue;
+        for(Map.Entry<Integer,TreeSet<String>> set : fmap.entrySet()){
+            List<String> subList = new ArrayList<>();
+            subList.add(accounts.get(set.getKey()).get(0));
+            subList.addAll(set.getValue());
+            result.add(subList);
         }
 
-        Collections.sort(Graph[i]);
-        List<String> sublist = new ArrayList<>();
-        sublist.add(accounts.get(i).get(0));
-        for(String mails : Graph[i])
-        {
-            sublist.add(mails);
-        }
-        result.add(sublist);
-    }
-
-
-
-      return result;
-        
+        return result;
     }
 }
